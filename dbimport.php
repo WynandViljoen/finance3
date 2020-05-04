@@ -136,10 +136,6 @@ if((isset($_POST["template"])) OR (isset($_POST["blank"])))
           $line = fgets(fopen($uploadedfile, 'r'));
           echo "<br><b style=\"color:green;\">If the output in the line below is readable, then the database was imported correctly:</b><br>$line";
           echo "<br><b style=\"color:red;\">If the line above is not readable, the database file might be corrupt.</b><br>";
-         // if ($line == "")
-         //   echo "<br><h2 style=\"color:red;\">Import Failed, the file might be corrupt.</h2><br>";
-         // else
-         //   echo "<br><h2 style=\"color:green;\">Database has been successfully imported</h2><br>";
 
           $files = glob($path . DS . '*'); // get all file names
           foreach($files as $file)

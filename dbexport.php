@@ -47,7 +47,7 @@ define('FILE_ENCRYPTION_BLOCKS', 10000);
 			$filename = $fileprefix . '_' .  date("Y-m-d_H-i-s") .'.sql';
 			$dir = dirname(__FILE__) . DS . $path . DS . $filename;
 
-			$files = glob($path . DS . '*.sql'); // get all file names
+			$files = glob($path . DS . '*'); // get all file names
           	foreach($files as $file)
           	{ 
             	if(is_file($file))
@@ -57,9 +57,12 @@ define('FILE_ENCRYPTION_BLOCKS', 10000);
 			$mysqlDir = 'C:'.DS.'wamp64'.DS.'bin'.DS.'mysql'.DS.'mysql5.7.26'.DS.'bin';    // Paste your mysql directory here and be happy
 			$mysqldump = $mysqlDir.DS.'mysqldump';
 
-			//echo "<h3>Backing up PLAINTEXT database to `<code>{$dir}</code>`</h3>";
-			exec("{$mysqldump} --user={$user} --password={$pass} --host={$host} -B {$database} --result-file={$dir} 2>&1", $output);
-			//var_dump($output);
+			//Windows
+			//exec("{$mysqldump} --user={$user} --password={$pass} --host={$host} -B {$database} --result-file={$dir} 2>&1", $output);
+
+			//Linux or Enviromental variable
+			exec("mysqldump --user={$user} --password={$pass} --host={$host} -B {$database} --result-file={$dir} 2>&1", $output);
+			var_dump($output);
 			echo "<br><br><h3>Plaintext database has been exported and can be downloaded below</h3>";
 
 			echo "<a href=\"" . $path . DS . $filename . "\">Download</a>";
@@ -93,16 +96,16 @@ define('FILE_ENCRYPTION_BLOCKS', 10000);
 			$mysqlDir = 'C:'.DS.'wamp64'.DS.'bin'.DS.'mysql'.DS.'mysql5.7.26'.DS.'bin';    // Paste your mysql directory here and be happy
 			$mysqldump = $mysqlDir.DS.'mysqldump';
 
-			//echo "<h3>Backing up database to `<code>{$dir}</code>`</h3>";
-			exec("{$mysqldump} --user={$user} --password={$pass} --host={$host} -B {$database} --result-file={$dir} 2>&1", $output);
-			//var_dump($output);
+			//Windowns
+			//exec("{$mysqldump} --user={$user} --password={$pass} --host={$host} -B {$database} --result-file={$dir} 2>&1", $output);
+			//Linux or Enviromental variable
+			exec("mysqldump --user={$user} --password={$pass} --host={$host} -B {$database} --result-file={$dir} 2>&1", $output);
+			var_dump($output); 
 
-			//$fileName = basename($_FILES["fileToUpload"]["name"]);
 			$newfilename = $fileprefix . '_' .  date("Y-m-d_H-i-s") .'.esql';
-	   		//$newFile = dirname(__FILE__) . DS . $path . DS . $filename;
+
 	   		$key = $_POST['password'];
-       		//move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $fileName); 
-	   		//echo "File has been uploaded: ";
+
 			encryptFile($path . DS . $filename, $key, $path . DS . $newfilename);
 
 			$files = glob($path . DS . '*.sql'); // get all file names
