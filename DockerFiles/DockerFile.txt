@@ -1,0 +1,20 @@
+FROM tutum/lamp:latest
+RUN rm -fr /app && git clone https://github.com/WynandViljoen/Finance3.git /app
+RUN chmod 777 /app/exports
+RUN chmod 777 /app/uploads
+RUN chmod 777 /var/lib/php5
+COPY generate-certificate.sh generate-certificate.sh
+COPY default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+
+RUN chmod 665 generate-certificate.sh
+EXPOSE 80 443
+
+RUN ./generate-certificate.sh
+
+RUN a2enmod ssl
+RUN a2enmod headers
+RUN a2ensite default-ssl
+RUN service apache2 restart
+
+CMD ["/run.sh"]
