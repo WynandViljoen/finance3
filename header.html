@@ -67,11 +67,25 @@ body {background-color: #dddddd;}
 <div class="dropdown"> 
 <button class="dropbtn">Custom Graphs</button>
 <div class="dropdown-content">
-<a href="graphcustom_NettWorthSavingsRetirement.php">Nett Worth & Retirement</a>
-<a href="graphcustom_MonthlyGrowth.php">Salary - Expenses</a>
+<a href="graphcreator.php">Graph Creator</a>
+<a href="graphdrawcustom.php">Plot Custom Graph(s)</a>
+
+
 </div>
 </div>
 
 
 </div>
+
+<?php
+
+	session_start();
+
+	if (!isset($_SESSION['username']))
+	{
+		header("Location: session.php");
+	}
+?>
+
+</body>
 </html>

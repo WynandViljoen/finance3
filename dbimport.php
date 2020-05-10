@@ -6,7 +6,8 @@
 
 define('FILE_ENCRYPTION_BLOCKS', 10000);
 
-include("header.html");
+//include("header.html");
+  echo "<br>Click <a href=\"accountbalances.php\">HERE </a> to go to the Account Balances page.";
 
   define('DS', DIRECTORY_SEPARATOR);
 	echo "<br><br><br>";
@@ -72,8 +73,12 @@ if((isset($_POST["template"])) OR (isset($_POST["blank"])))
     $mysqli = new mysqli("localhost", "root", "", "finance");
     $mysqli->multi_query($sql);
 
-    echo "<br><br><br>";
-    echo "<br>Click <a href=\"accountbalances.php\">HERE </a> to go to the Account Balances page.";
+    sleep(1);
+    header("Location: session.php");
+
+   // echo "<br><br><br>";
+    //echo "<br>Click <a href=\"accountbalances.php\">HERE </a> to go to the Account Balances page.";
+    //header("Location: session.php");
 } 
 
 
@@ -144,8 +149,14 @@ if((isset($_POST["template"])) OR (isset($_POST["blank"])))
               unlink($file); // delete file
           }
 
-          echo "<br><br><br>";
-          echo "<br>Click <a href=\"accountbalances.php\">HERE </a> to go to the Account Balances page.";
+          sleep(1);
+          header("Location: session.php");
+
+          //echo "<br><br><br>";
+          //echo "<br>Click <a href=\"accountbalances.php\">HERE </a> to go to the Account Balances page.";
+          //include("session.php");
+
+
       }
 
       else
@@ -234,19 +245,34 @@ if(isset($_POST["encrypted"]))
 
         $line = fgets(fopen($newFile, 'r'));
         if ($line == "")
+        {
           echo "<br><h2 style=\"color:red;\">Import Failed, the file might be corrupt or the decryption password was wrong.</h2><br>";
+          $files = glob($path . DS . '*'); // get all file names
+          foreach($files as $file)
+          { 
+            if(is_file($file))
+              unlink($file); // delete file
+          }
+        }
         else
+        {
           echo "<br><h2 style=\"color:green;\">Database has been successfully imported</h2><br>";
+          $files = glob($path . DS . '*'); // get all file names
+          foreach($files as $file)
+          { 
+            if(is_file($file))
+              unlink($file); // delete file
+          }
 
-        $files = glob($path . DS . '*'); // get all file names
-        foreach($files as $file)
-        { 
-          if(is_file($file))
-            unlink($file); // delete file
+          sleep(1);
+          header("Location: session.php");
         }
 
-        echo "<br><br><br>";
-        echo "<br>Click <a href=\"accountbalances.php\">HERE </a> to go to the Account Balances page.";
+        
+
+        //echo "<br><br><br>";
+        //echo "<br>Click <a href=\"accountbalances.php\">HERE </a> to go to the Account Balances page.";
+        //header("Location: session.php");
     }
 
 }    

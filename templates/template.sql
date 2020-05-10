@@ -1,247 +1,300 @@
--- phpMyAdmin SQL Dump
--- version 4.8.5
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.13  Distrib 5.7.26, for Win64 (x86_64)
 --
--- Host: 127.0.0.1:3306
--- Generation Time: May 03, 2020 at 09:07 PM
--- Server version: 5.7.26
--- PHP Version: 5.6.40
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: finance
+-- ------------------------------------------------------
+-- Server version	5.7.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Database: `finance`
+-- Current Database: `finance`
 --
-CREATE DATABASE IF NOT EXISTS `finance` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `finance` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
 USE `finance`;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `accounts`
 --
 
 DROP TABLE IF EXISTS `accounts`;
-CREATE TABLE IF NOT EXISTS `accounts` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `accounts` (
   `Account` varchar(50) NOT NULL,
   `accounttype` varchar(50) NOT NULL,
   `Balance` float NOT NULL DEFAULT '0',
   `Date` date NOT NULL DEFAULT '2000-01-01',
   `Description` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`Account`),
-  KEY `Type` (`accounttype`)
+  KEY `Type` (`accounttype`),
+  CONSTRAINT `accounts_ibfk_1` FOREIGN KEY (`accounttype`) REFERENCES `accounttypes` (`accounttype`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`Account`, `accounttype`, `Balance`, `Date`, `Description`) VALUES
-(' Gross Salary', 'Short-Term', 0, '1970-01-01', 'Gross Salary zero balance account'),
-('Car Loan', 'Longer-term', 0, '1970-01-01', 'Car Loan with bank'),
-('Cars', 'Longer-term', 0, '1970-01-01', 'Estimated resell Value of all Cars owned'),
-('Chequing Account', 'Short-Term', 0, '1970-01-01', 'Chequing account with Bank'),
-('Credit Card', 'Short-Term', 0, '1970-01-01', 'Credit card account with Bank'),
-('Mortgage', 'Longer-term', 0, '1970-01-01', 'Outstanding Mortgage on property'),
-('Property', 'Longer-term', 0, '1970-01-01', 'Current property value or Purchase price'),
-('RRSP', 'Longer-term', 0, '1970-01-01', 'Registered Retirement Savings Plan balance'),
-('Savings Account', 'Short-Term', 0, '1970-01-01', 'Bank Savings Account'),
-('TFSA', 'Longer-term', 0, '1970-01-01', 'Tax Free Saving account balance'),
-('Wallet Cash', 'Short-Term', 0, '1970-01-01', 'Cash in wallet');
-
--- --------------------------------------------------------
+LOCK TABLES `accounts` WRITE;
+/*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
+INSERT INTO `accounts` VALUES (' Gross Salary','Short-Term',0,'1970-01-01','Gross Salary zero balance account'),('Car Loan','Longer-term',0,'1970-01-01','Car Loan with bank'),('Cars','Longer-term',0,'1970-01-01','Estimated resell Value of all Cars owned'),('Chequing Account','Short-Term',0,'1970-01-01','Chequing account with Bank'),('Credit Card','Short-Term',0,'1970-01-01','Credit card account with Bank'),('Mortgage','Longer-term',0,'1970-01-01','Outstanding Mortgage on property'),('Property','Longer-term',0,'1970-01-01','Current property value or Purchase price'),('RRSP','Longer-term',0,'1970-01-01','Registered Retirement Savings Plan balance'),('Savings Account','Short-Term',0,'1970-01-01','Bank Savings Account'),('TFSA','Longer-term',0,'1970-01-01','Tax Free Saving account balance'),('Wallet Cash','Short-Term',0,'1970-01-01','Cash in wallet');
+/*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `accounttypes`
 --
 
 DROP TABLE IF EXISTS `accounttypes`;
-CREATE TABLE IF NOT EXISTS `accounttypes` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `accounttypes` (
   `accounttype` varchar(50) NOT NULL,
   `Description` varchar(100) NOT NULL,
   PRIMARY KEY (`accounttype`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `accounttypes`
 --
 
-INSERT INTO `accounttypes` (`accounttype`, `Description`) VALUES
-('Longer-term', 'Investment / Retirement / House'),
-('Short-Term', 'Active Short-term accounts');
-
--- --------------------------------------------------------
+LOCK TABLES `accounttypes` WRITE;
+/*!40000 ALTER TABLE `accounttypes` DISABLE KEYS */;
+INSERT INTO `accounttypes` VALUES ('Longer-term','Investment / Retirement / House'),('Short-Term','Active Short-term accounts');
+/*!40000 ALTER TABLE `accounttypes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `currency`
 --
 
 DROP TABLE IF EXISTS `currency`;
-CREATE TABLE IF NOT EXISTS `currency` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `currency` (
   `currency1` varchar(20) NOT NULL,
   `currency2` varchar(20) DEFAULT NULL,
   `ROE` float DEFAULT NULL,
   `timezone` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`currency1`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Stand-in structure for view `expenseaccountview`
--- (See below for the actual view)
+-- Dumping data for table `currency`
 --
-DROP VIEW IF EXISTS `expenseaccountview`;
-CREATE TABLE IF NOT EXISTS `expenseaccountview` (
-`Account` varchar(50)
-,`total` double
-,`month` varchar(7)
-);
 
--- --------------------------------------------------------
+LOCK TABLES `currency` WRITE;
+/*!40000 ALTER TABLE `currency` DISABLE KEYS */;
+/*!40000 ALTER TABLE `currency` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `expenseaccountview`
+--
+
+DROP TABLE IF EXISTS `expenseaccountview`;
+/*!50001 DROP VIEW IF EXISTS `expenseaccountview`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `expenseaccountview` AS SELECT 
+ 1 AS `Account`,
+ 1 AS `total`,
+ 1 AS `month`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `expenses`
 --
 
 DROP TABLE IF EXISTS `expenses`;
-CREATE TABLE IF NOT EXISTS `expenses` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `expenses` (
   `Expense` varchar(50) NOT NULL,
   `Description` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`Expense`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `expenses`
 --
 
-INSERT INTO `expenses` (`Expense`, `Description`) VALUES
-('Banking Fees', 'Bank charges'),
-('Car Insurance', 'Car Insurance'),
-('Cellphone / Internet', 'Cellphone and Internet costs'),
-('Clothes', 'Clothing, shoes etc'),
-('Depreciation', 'Depreciation of assets to align with market value'),
-('Donations', 'Tax deductible donations '),
-('Entertainment', 'Movies, restaurants etc'),
-('Gas / Petrol', 'Vehicle Fuel Bill'),
-('Gifts', 'Birthday, Christmas and other gifts'),
-('Groceries', 'Groceries bought'),
-('Holiday', 'Holiday Expenses'),
-('Income Tax', 'Income Tax Paid (Negative for received)'),
-('Life Insurance', 'Life, Mortgage, Disability etc. insurance'),
-('Medical Expenses', 'All medical expenses'),
-('Mortgage Interest', 'Interest on Property Mortgage'),
-('Property Maintenance', 'Home Repairs costs'),
-('Property Tax', 'Property Tax'),
-('Utility Bill', 'Utility Bill'),
-('Vehicle Maintenance', 'Cost of performing Vehicle Maintenance');
-
--- --------------------------------------------------------
+LOCK TABLES `expenses` WRITE;
+/*!40000 ALTER TABLE `expenses` DISABLE KEYS */;
+INSERT INTO `expenses` VALUES ('Banking Fees','Bank charges'),('Car Insurance','Car Insurance'),('Cellphone / Internet','Cellphone and Internet costs'),('Clothes','Clothing, shoes etc'),('Depreciation','Depreciation of assets to align with market value'),('Donations','Tax deductible donations '),('Entertainment','Movies, restaurants etc'),('Gas / Petrol','Vehicle Fuel Bill'),('Gifts','Birthday, Christmas and other gifts'),('Groceries','Groceries bought'),('Holiday','Holiday Expenses'),('Income Tax','Income Tax Paid (Negative for received)'),('Life Insurance','Life, Mortgage, Disability etc. insurance'),('Medical Expenses','All medical expenses'),('Mortgage Interest','Interest on Property Mortgage'),('Property Maintenance','Home Repairs costs'),('Property Tax','Property Tax'),('Utility Bill','Utility Bill'),('Vehicle Maintenance','Cost of performing Vehicle Maintenance');
+/*!40000 ALTER TABLE `expenses` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Stand-in structure for view `expenseview`
--- (See below for the actual view)
+-- Temporary table structure for view `expenseview`
 --
-DROP VIEW IF EXISTS `expenseview`;
-CREATE TABLE IF NOT EXISTS `expenseview` (
-`Expense` varchar(50)
-,`total` double
-,`month` varchar(7)
-);
 
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `fromaccountview`
--- (See below for the actual view)
---
-DROP VIEW IF EXISTS `fromaccountview`;
-CREATE TABLE IF NOT EXISTS `fromaccountview` (
-`FromAccount` varchar(50)
-,`total` double
-,`month` varchar(7)
-);
-
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `expenseview`;
+/*!50001 DROP VIEW IF EXISTS `expenseview`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `expenseview` AS SELECT 
+ 1 AS `Expense`,
+ 1 AS `total`,
+ 1 AS `month`*/;
+SET character_set_client = @saved_cs_client;
 
 --
--- Stand-in structure for view `incomeaccountview`
--- (See below for the actual view)
+-- Temporary table structure for view `fromaccountview`
 --
-DROP VIEW IF EXISTS `incomeaccountview`;
-CREATE TABLE IF NOT EXISTS `incomeaccountview` (
-`Account` varchar(50)
-,`total` double
-,`month` varchar(7)
-);
 
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `fromaccountview`;
+/*!50001 DROP VIEW IF EXISTS `fromaccountview`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `fromaccountview` AS SELECT 
+ 1 AS `FromAccount`,
+ 1 AS `total`,
+ 1 AS `month`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `graphelement`
+--
+
+DROP TABLE IF EXISTS `graphelement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `graphelement` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `graphname` varchar(50) NOT NULL,
+  `viewtable` varchar(30) NOT NULL,
+  `FieldHeader` varchar(50) NOT NULL,
+  `FieldString` varchar(50) NOT NULL,
+  `operation` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `graphname` (`graphname`),
+  CONSTRAINT `graphelement_ibfk_1` FOREIGN KEY (`graphname`) REFERENCES `graphs` (`graphName`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `graphelement`
+--
+
+LOCK TABLES `graphelement` WRITE;
+/*!40000 ALTER TABLE `graphelement` DISABLE KEYS */;
+/*!40000 ALTER TABLE `graphelement` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `graphs`
+--
+
+DROP TABLE IF EXISTS `graphs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `graphs` (
+  `graphName` varchar(50) NOT NULL,
+  `graphDescription` varchar(100) NOT NULL,
+  `AutoShow` tinyint(1) NOT NULL,
+  `AccountsGraph` tinyint(1) NOT NULL,
+  PRIMARY KEY (`graphName`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `graphs`
+--
+
+LOCK TABLES `graphs` WRITE;
+/*!40000 ALTER TABLE `graphs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `graphs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `incomeaccountview`
+--
+
+DROP TABLE IF EXISTS `incomeaccountview`;
+/*!50001 DROP VIEW IF EXISTS `incomeaccountview`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `incomeaccountview` AS SELECT 
+ 1 AS `Account`,
+ 1 AS `total`,
+ 1 AS `month`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `incomes`
 --
 
 DROP TABLE IF EXISTS `incomes`;
-CREATE TABLE IF NOT EXISTS `incomes` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `incomes` (
   `Income` varchar(50) NOT NULL,
   `Description` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`Income`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `incomes`
 --
 
-INSERT INTO `incomes` (`Income`, `Description`) VALUES
-('Appreciation ', 'Appreciation of assets'),
-('Growth', 'Growth on Investments'),
-('Interest', 'Interest from Savings'),
-('Other', 'All other incomes'),
-('Salary', 'Working salary');
-
--- --------------------------------------------------------
+LOCK TABLES `incomes` WRITE;
+/*!40000 ALTER TABLE `incomes` DISABLE KEYS */;
+INSERT INTO `incomes` VALUES ('Appreciation ','Appreciation of assets'),('Growth','Growth on Investments'),('Interest','Interest from Savings'),('Other','All other incomes'),('Salary','Working salary');
+/*!40000 ALTER TABLE `incomes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Stand-in structure for view `incomeview`
--- (See below for the actual view)
+-- Temporary table structure for view `incomeview`
 --
-DROP VIEW IF EXISTS `incomeview`;
-CREATE TABLE IF NOT EXISTS `incomeview` (
-`Income` varchar(50)
-,`total` double
-,`month` varchar(7)
-);
 
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `incomeview`;
+/*!50001 DROP VIEW IF EXISTS `incomeview`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `incomeview` AS SELECT 
+ 1 AS `Income`,
+ 1 AS `total`,
+ 1 AS `month`*/;
+SET character_set_client = @saved_cs_client;
 
 --
--- Stand-in structure for view `intoaccountview`
--- (See below for the actual view)
+-- Temporary table structure for view `intoaccountview`
 --
-DROP VIEW IF EXISTS `intoaccountview`;
-CREATE TABLE IF NOT EXISTS `intoaccountview` (
-`IntoAccount` varchar(50)
-,`total` double
-,`month` varchar(7)
-);
 
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `intoaccountview`;
+/*!50001 DROP VIEW IF EXISTS `intoaccountview`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `intoaccountview` AS SELECT 
+ 1 AS `IntoAccount`,
+ 1 AS `total`,
+ 1 AS `month`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `logs`
 --
 
 DROP TABLE IF EXISTS `logs`;
-CREATE TABLE IF NOT EXISTS `logs` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `actionTaken` varchar(100) NOT NULL,
   `dbTable` varchar(100) NOT NULL,
@@ -249,15 +302,48 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `fullEntry` varchar(500) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `logs`
+--
+
+LOCK TABLES `logs` WRITE;
+/*!40000 ALTER TABLE `logs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `logs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `session`
+--
+
+DROP TABLE IF EXISTS `session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `session` (
+  `IPAddress` varchar(100) NOT NULL,
+  `Date` datetime NOT NULL,
+  PRIMARY KEY (`IPAddress`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `session`
+--
+
+LOCK TABLES `session` WRITE;
+/*!40000 ALTER TABLE `session` DISABLE KEYS */;
+/*!40000 ALTER TABLE `session` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `transfers`
 --
 
 DROP TABLE IF EXISTS `transfers`;
-CREATE TABLE IF NOT EXISTS `transfers` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `transfers` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Description` varchar(100) NOT NULL,
   `Date` date NOT NULL,
@@ -266,17 +352,29 @@ CREATE TABLE IF NOT EXISTS `transfers` (
   `FromAccount` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `IntoAccount` (`IntoAccount`),
-  KEY `FromAccount` (`FromAccount`)
+  KEY `FromAccount` (`FromAccount`),
+  CONSTRAINT `transfers_ibfk_1` FOREIGN KEY (`IntoAccount`) REFERENCES `accounts` (`Account`),
+  CONSTRAINT `transfers_ibfk_2` FOREIGN KEY (`FromAccount`) REFERENCES `accounts` (`Account`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1030 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `transfers`
+--
+
+LOCK TABLES `transfers` WRITE;
+/*!40000 ALTER TABLE `transfers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `transfers` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `txexpense`
 --
 
 DROP TABLE IF EXISTS `txexpense`;
-CREATE TABLE IF NOT EXISTS `txexpense` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `txexpense` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Description` varchar(100) NOT NULL,
   `Date` date NOT NULL,
@@ -285,17 +383,29 @@ CREATE TABLE IF NOT EXISTS `txexpense` (
   `Account` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `Account` (`Account`),
-  KEY `Expense` (`Expense`)
+  KEY `Expense` (`Expense`),
+  CONSTRAINT `txexpense_ibfk_2` FOREIGN KEY (`Account`) REFERENCES `accounts` (`Account`),
+  CONSTRAINT `txexpense_ibfk_3` FOREIGN KEY (`Expense`) REFERENCES `expenses` (`Expense`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6129 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `txexpense`
+--
+
+LOCK TABLES `txexpense` WRITE;
+/*!40000 ALTER TABLE `txexpense` DISABLE KEYS */;
+/*!40000 ALTER TABLE `txexpense` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `txincome`
 --
 
 DROP TABLE IF EXISTS `txincome`;
-CREATE TABLE IF NOT EXISTS `txincome` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `txincome` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Description` varchar(100) NOT NULL,
   `Date` date NOT NULL,
@@ -304,95 +414,142 @@ CREATE TABLE IF NOT EXISTS `txincome` (
   `Income` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `Account` (`Account`),
-  KEY `Income` (`Income`)
+  KEY `Income` (`Income`),
+  CONSTRAINT `txincome_ibfk_2` FOREIGN KEY (`Account`) REFERENCES `accounts` (`Account`),
+  CONSTRAINT `txincome_ibfk_3` FOREIGN KEY (`Income`) REFERENCES `incomes` (`Income`)
 ) ENGINE=InnoDB AUTO_INCREMENT=635 DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure for view `expenseaccountview`
---
-DROP TABLE IF EXISTS `expenseaccountview`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `expenseaccountview`  AS  select `txexpense`.`Account` AS `Account`,sum(`txexpense`.`Amount`) AS `total`,substr(`txexpense`.`Date`,1,7) AS `month` from `txexpense` where 1 group by `txexpense`.`Account`,substr(`txexpense`.`Date`,1,7) ;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Structure for view `expenseview`
---
-DROP TABLE IF EXISTS `expenseview`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `expenseview`  AS  select `txexpense`.`Expense` AS `Expense`,sum(`txexpense`.`Amount`) AS `total`,substr(`txexpense`.`Date`,1,7) AS `month` from `txexpense` where 1 group by `txexpense`.`Expense`,substr(`txexpense`.`Date`,1,7) ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `fromaccountview`
---
-DROP TABLE IF EXISTS `fromaccountview`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `fromaccountview`  AS  select `transfers`.`FromAccount` AS `FromAccount`,sum(`transfers`.`Amount`) AS `total`,substr(`transfers`.`Date`,1,7) AS `month` from `transfers` where 1 group by `transfers`.`FromAccount`,substr(`transfers`.`Date`,1,7) ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `incomeaccountview`
---
-DROP TABLE IF EXISTS `incomeaccountview`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `incomeaccountview`  AS  select `txincome`.`Account` AS `Account`,sum(`txincome`.`Amount`) AS `total`,substr(`txincome`.`Date`,1,7) AS `month` from `txincome` where 1 group by `txincome`.`Account`,substr(`txincome`.`Date`,1,7) ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `incomeview`
---
-DROP TABLE IF EXISTS `incomeview`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `incomeview`  AS  select `txincome`.`Income` AS `Income`,sum(`txincome`.`Amount`) AS `total`,substr(`txincome`.`Date`,1,7) AS `month` from `txincome` where 1 group by `txincome`.`Income`,substr(`txincome`.`Date`,1,7) ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `intoaccountview`
---
-DROP TABLE IF EXISTS `intoaccountview`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `intoaccountview`  AS  select `transfers`.`IntoAccount` AS `IntoAccount`,sum(`transfers`.`Amount`) AS `total`,substr(`transfers`.`Date`,1,7) AS `month` from `transfers` where 1 group by `transfers`.`IntoAccount`,substr(`transfers`.`Date`,1,7) ;
-
---
--- Constraints for dumped tables
+-- Dumping data for table `txincome`
 --
 
---
--- Constraints for table `accounts`
---
-ALTER TABLE `accounts`
-  ADD CONSTRAINT `accounts_ibfk_1` FOREIGN KEY (`accounttype`) REFERENCES `accounttypes` (`accounttype`);
+LOCK TABLES `txincome` WRITE;
+/*!40000 ALTER TABLE `txincome` DISABLE KEYS */;
+/*!40000 ALTER TABLE `txincome` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Constraints for table `transfers`
+-- Current Database: `finance`
 --
-ALTER TABLE `transfers`
-  ADD CONSTRAINT `transfers_ibfk_1` FOREIGN KEY (`IntoAccount`) REFERENCES `accounts` (`Account`),
-  ADD CONSTRAINT `transfers_ibfk_2` FOREIGN KEY (`FromAccount`) REFERENCES `accounts` (`Account`);
+
+USE `finance`;
 
 --
--- Constraints for table `txexpense`
+-- Final view structure for view `expenseaccountview`
 --
-ALTER TABLE `txexpense`
-  ADD CONSTRAINT `txexpense_ibfk_2` FOREIGN KEY (`Account`) REFERENCES `accounts` (`Account`),
-  ADD CONSTRAINT `txexpense_ibfk_3` FOREIGN KEY (`Expense`) REFERENCES `expenses` (`Expense`);
+
+/*!50001 DROP VIEW IF EXISTS `expenseaccountview`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `expenseaccountview` AS select `txexpense`.`Account` AS `Account`,sum(`txexpense`.`Amount`) AS `total`,substr(`txexpense`.`Date`,1,7) AS `month` from `txexpense` where 1 group by `txexpense`.`Account`,substr(`txexpense`.`Date`,1,7) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
--- Constraints for table `txincome`
+-- Final view structure for view `expenseview`
 --
-ALTER TABLE `txincome`
-  ADD CONSTRAINT `txincome_ibfk_2` FOREIGN KEY (`Account`) REFERENCES `accounts` (`Account`),
-  ADD CONSTRAINT `txincome_ibfk_3` FOREIGN KEY (`Income`) REFERENCES `incomes` (`Income`);
-COMMIT;
 
+/*!50001 DROP VIEW IF EXISTS `expenseview`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `expenseview` AS select `txexpense`.`Expense` AS `Expense`,sum(`txexpense`.`Amount`) AS `total`,substr(`txexpense`.`Date`,1,7) AS `month` from `txexpense` where 1 group by `txexpense`.`Expense`,substr(`txexpense`.`Date`,1,7) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `fromaccountview`
+--
+
+/*!50001 DROP VIEW IF EXISTS `fromaccountview`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `fromaccountview` AS select `transfers`.`FromAccount` AS `FromAccount`,sum(`transfers`.`Amount`) AS `total`,substr(`transfers`.`Date`,1,7) AS `month` from `transfers` where 1 group by `transfers`.`FromAccount`,substr(`transfers`.`Date`,1,7) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `incomeaccountview`
+--
+
+/*!50001 DROP VIEW IF EXISTS `incomeaccountview`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `incomeaccountview` AS select `txincome`.`Account` AS `Account`,sum(`txincome`.`Amount`) AS `total`,substr(`txincome`.`Date`,1,7) AS `month` from `txincome` where 1 group by `txincome`.`Account`,substr(`txincome`.`Date`,1,7) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `incomeview`
+--
+
+/*!50001 DROP VIEW IF EXISTS `incomeview`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `incomeview` AS select `txincome`.`Income` AS `Income`,sum(`txincome`.`Amount`) AS `total`,substr(`txincome`.`Date`,1,7) AS `month` from `txincome` where 1 group by `txincome`.`Income`,substr(`txincome`.`Date`,1,7) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `intoaccountview`
+--
+
+/*!50001 DROP VIEW IF EXISTS `intoaccountview`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `intoaccountview` AS select `transfers`.`IntoAccount` AS `IntoAccount`,sum(`transfers`.`Amount`) AS `total`,substr(`transfers`.`Date`,1,7) AS `month` from `transfers` where 1 group by `transfers`.`IntoAccount`,substr(`transfers`.`Date`,1,7) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-05-09 17:46:25
