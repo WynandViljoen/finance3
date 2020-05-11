@@ -1,0 +1,19 @@
+expenseview:
+SELECT `Expense`, SUM(`Amount`) AS `total`, Substr(`Date`,1,7) AS `month` FROM `txexpense` WHERE 1 GROUP BY `Expense`, Substr(`Date`,1,7)
+
+incomeview:
+SELECT `Income`, SUM(`Amount`) AS `total`, Substr(`Date`,1,7) AS `month` FROM `txincome` WHERE 1 GROUP BY `Income`, Substr(`Date`,1,7)
+
+expenseaccountview:
+SELECT `Account`, SUM(`Amount`) AS `total`, Substr(`Date`,1,7) AS `month` FROM `txexpense` WHERE 1 GROUP BY `Account`, Substr(`Date`,1,7)
+
+incomeaccountview:
+SELECT `Account`, SUM(`Amount`) AS `total`, Substr(`Date`,1,7) AS `month` FROM `txincome` WHERE 1 GROUP BY `Account`, Substr(`Date`,1,7)
+
+intoaccountview:
+SELECT `IntoAccount`, SUM(`Amount`) AS `total`, Substr(`Date`,1,7) AS `month` FROM `transfers` WHERE 1 GROUP BY `IntoAccount`, Substr(`Date`,1,7)
+
+fromaccountview:
+SELECT `FromAccount`, SUM(`Amount`) AS `total`, Substr(`Date`,1,7) AS `month` FROM `transfers` WHERE 1 GROUP BY `FromAccount`, Substr(`Date`,1,7)
+
+
