@@ -90,7 +90,7 @@ th{
 		    echo "Field '$expense' with description '$description' inserted successfully into tables incomes.";
 		    $mydate = date("Y-m-d H:i:s");
 			$mystring = $_POST['expense'] . ", ". $_POST['description'];
-			$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('add', 'expenses', '$mydate' ,'$mystring')";
+			$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('add', 'expenses', '$mydate' ,'$mystring')";
 			$result2=mysqli_query($con,$sql2);		    
 		}
 		else
@@ -114,7 +114,7 @@ th{
 
 		   	$mydate = date("Y-m-d H:i:s");
 			$mystring = $_POST['expenseold'] . ", ". $_POST['descriptionold'];
-			$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('remove', 'expenses', '$mydate' ,'$mystring')";
+			$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('remove', 'expenses', '$mydate' ,'$mystring')";
 			$result2=mysqli_query($con,$sql2);		    
 		}
 		else
@@ -141,7 +141,7 @@ th{
 
 			   	$mydate = date("Y-m-d H:i:s");
 				$mystring = "[" . $_POST['expenseold'] . "]: ". $_POST['descriptionold'] . " ---> ". $_POST['descriptionnew'];
-				$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'expenses', '$mydate' ,'$mystring')";
+				$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'expenses', '$mydate' ,'$mystring')";
 				$result2=mysqli_query($con,$sql2);			    
 			}
 
@@ -158,7 +158,7 @@ th{
 
 			   	$mydate = date("Y-m-d H:i:s");
 				$mystring = $_POST['expenseold'] . " ---> " . $_POST['expensenew'];
-				$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update-id', 'expenses', '$mydate' ,'$mystring')";
+				$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update-id', 'expenses', '$mydate' ,'$mystring')";
 				$result2=mysqli_query($con,$sql2);			    
 			}
 			else

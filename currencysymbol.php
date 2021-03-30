@@ -96,7 +96,7 @@ th{
 		{
 			$mydate = date("Y-m-d H:i:s");
 			$mystring = $_POST['currency1'] . ", ". $_POST['currency2'] . ", ". $ROE  . ", ". $timezone;
-			$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'currency', '$mydate' ,'$mystring')";
+			$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'currency', '$mydate' ,'$mystring')";
 			$result2=mysqli_query($con,$sql2);
 
 		    echo "Currency Table has the following entries: " . $_POST['currency1'] . ", " . $_POST['currency2'] .", " . $_POST['ROE'];

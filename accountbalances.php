@@ -124,6 +124,8 @@ tr{cursor: pointer; transition: all .25s ease-in-out}
 	}
 	
 	echo "</table>";
+
+
 	$networth = 0;
 
 	echo "<p style=\"font-size:16px; color:green;\">";
@@ -146,7 +148,7 @@ tr{cursor: pointer; transition: all .25s ease-in-out}
 	}
 	
 		$networth = number_format((float)$networth, 2);
-		echo "</p><p style=\"font-size:20px; color:green;\"><b><br>Net Worth: $currencysymbol $networth";
+		echo "</p><p style=\"font-size:20px; color:green;\"><b>Net Worth: $currencysymbol $networth";
 		if ($currencysymbol2 != "")
 			echo " ($currencysymbol2 $networth2)";
 		echo "</p>";

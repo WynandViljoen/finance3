@@ -21,8 +21,9 @@ define('FILE_ENCRYPTION_BLOCKS', 10000);
 		echo "Option 1: Export database as a plaintext file<br>";
 		echo "<input type=text name=\"myfilenamePlain\" placeholder=\"Type the prefix filename here...\" size=60><br>";
 		echo "<input type=submit name=\"exportPlaintext\" value=\"Export Plaintext Database\">";
+	echo "</form>";
 
-
+	echo "<form method=\"post\">";
 		echo "<br><br><br>Option 2: Export database as an encrypted file<br>";
 		echo "<input type=text name=\"myfilename\" placeholder=\"Type the prefix filename here...\" size=60><br>";
 		echo "<input type=password name=\"password\" placeholder=\"Type an encryption password\" size=60 ><br>";

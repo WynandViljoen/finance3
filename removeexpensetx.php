@@ -16,7 +16,7 @@
 
 		   	$mydate = date("Y-m-d H:i:s");
 			$mystring = $_POST['description'] . ", ". $_POST['date'] . ", ". $_POST['amount'] .", ". $_POST['expense'] .", ". $_POST['account'];
-			$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('remove', 'txexpense', '$mydate' ,'$mystring')";
+			$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('remove', 'txexpense', '$mydate' ,'$mystring')";
 			$result2=mysqli_query($con,$sql2);
 		}
 		else

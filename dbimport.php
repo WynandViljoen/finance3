@@ -13,26 +13,33 @@ define('FILE_ENCRYPTION_BLOCKS', 10000);
 	echo "<br><br><br>";
 	echo "<h2 style=\"color:red;\">If there is an existing database called 'finance' it will be deleted/replaced by this import!</h2><br>";
 
-  echo "<form method=\"post\" enctype=\"multipart/form-data\">";
+  //echo "<form method=\"post\" enctype=\"multipart/form-data\">";
   echo "<table>";
+  echo "<form method=\"post\" enctype=\"multipart/form-data\">";
   echo "Option 1: Create new Blank Database<br><input type=\"submit\" value=\"Create Blank\" name=\"blank\"><br><br>";
+  echo "</form>";
 
+  echo "<form method=\"post\" enctype=\"multipart/form-data\">";
   echo "Option 2: Create database from template<br>";
   echo "<input type=\"submit\" value=\"Create from template\" name=\"template\">&nbsp&nbsp&nbsp";
   echo " <a href=\"importtemplate.php\" target=\"_blank\">View Template </a><br><br>";
+  echo "</form>";
 
+  echo "<form method=\"post\" enctype=\"multipart/form-data\">";
   echo "Options 3: Import Unencrypted database<br>";
 	echo "<input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\"><br>";
-
 	echo "<input type=\"submit\" value=\"Import Unencrypted File\" name=\"unencrypted\"><br><br>";
+  echo "</form>";
 
+  echo "<form method=\"post\" enctype=\"multipart/form-data\">";
   echo "Option 4: Import Encrypted database<br>";
   echo "<input type=\"file\" name=\"fileToUploadEncrypted\" id=\"fileToUploadEncrypted\"><br>";
   echo "Password: <input name=\"password\"size=25 type=\"password\"><br>";
   echo "<input type=\"submit\" value=\"Import Encrypted File\" name=\"encrypted\">";
+  echo "</form>";
   
   echo "</table>";
-  echo "</form>";
+  //echo "</form>";
   
 
 if((isset($_POST["template"])) OR (isset($_POST["blank"]))) 

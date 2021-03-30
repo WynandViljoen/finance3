@@ -164,7 +164,7 @@ th{
 				{
 					$mydate = date("Y-m-d H:i:s");
 					$mystring = $_POST['description' . $i] . ", ". $_POST['EndDate' . $i] . ", ". $_POST['amount' . $i] .", ". $_POST['expense' . $i] .", ". $_POST['Account' . $i];
-					$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('add', 'txexpense', '$mydate' ,'$mystring')";
+					$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('add', 'txexpense', '$mydate' ,'$mystring')";
 					$result2=mysqli_query($con,$sql2);
 
 				    echo "Added to the Expense Table: " . $_POST['description' . $i] . ", " . $_POST['EndDate' . $i] . ", " . $_POST['amount' . $i] . ", " . $_POST['expense' . $i] . ", " . $_POST['Account' . $i] . "<br>";
@@ -188,7 +188,7 @@ th{
 				{    
 					$mydate = date("Y-m-d H:i:s");
 					$mystring = $_POST['description' . $i] . ", ". $_POST['IncomeDate' . $i] . ", ". $_POST['amount' . $i] .", ". $_POST['Account' . $i] .", ". $_POST['Income' . $i];
-					$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('add', 'txincome', '$mydate' ,'$mystring')";
+					$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('add', 'txincome', '$mydate' ,'$mystring')";
 					$result2=mysqli_query($con,$sql2);
 
 					echo "Added to the Income Table: " . $_POST['description' . $i] . ", " . $_POST['IncomeDate' . $i] . ", " . $_POST['amount' . $i] . ", " . $_POST['Account' . $i] . ", " . $_POST['Income' . $i] . "<br>";
@@ -211,7 +211,7 @@ th{
 				{    
 					$mydate = date("Y-m-d H:i:s");
 					$mystring = $_POST['description' . $i] . ", ". $_POST['TransferDate' . $i] . ", ". $_POST['amount' . $i] .", ". $_POST['accountsinto' . $i] .", ". $_POST['accountsfrom' . $i];
-					$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('add', 'transfers', '$mydate' ,'$mystring')";
+					$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('add', 'transfers', '$mydate' ,'$mystring')";
 
 					echo "Added to the Transfer Table: " . $_POST['description' . $i] . ", " . $_POST['TransferDate' . $i] . ", " . $_POST['amount' . $i] . ", " . $_POST['accountsinto' . $i] . ", " . $_POST['accountsfrom' . $i] . "<br>";
 				}

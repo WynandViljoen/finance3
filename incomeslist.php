@@ -84,7 +84,7 @@ th{
 		    echo "Field '$income' with description '$description' inserted successfully into tables incomes.";
 		    $mydate = date("Y-m-d H:i:s");
 			$mystring = $_POST['income'] . ", ". $_POST['description'];
-			$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('add', 'incomes', '$mydate' ,'$mystring')";
+			$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('add', 'incomes', '$mydate' ,'$mystring')";
 			$result2=mysqli_query($con,$sql2);
 		}
 		else
@@ -107,7 +107,7 @@ th{
 		    echo "Field '$income' deleted successfully into table incomes.";
 		   	$mydate = date("Y-m-d H:i:s");
 			$mystring = $_POST['incomeold'] . ", ". $_POST['descriptionold'];
-			$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('remove', 'incomes', '$mydate' ,'$mystring')";
+			$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('remove', 'incomes', '$mydate' ,'$mystring')";
 			$result2=mysqli_query($con,$sql2);
 		}
 		else
@@ -132,7 +132,7 @@ th{
 			    echo "Field '$incomeold' has been successfully updated in table incomes.";
 			   	$mydate = date("Y-m-d H:i:s");
 				$mystring = "[" . $_POST['incomeold'] . "]: ". $_POST['descriptionold'] . " ---> ". $_POST['descriptionnew'];
-				$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'incomes', '$mydate' ,'$mystring')";
+				$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'incomes', '$mydate' ,'$mystring')";
 				$result2=mysqli_query($con,$sql2);
 			}
 			else
@@ -147,7 +147,7 @@ th{
 				echo "<br>Field '$incomeold' has been successfully updated to '$incomenew' in table incomes.";
 			   	$mydate = date("Y-m-d H:i:s");
 				$mystring = $_POST['incomeold'] . " ---> ". $_POST['incomenew'];
-				$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update-id', 'incomes', '$mydate' ,'$mystring')";
+				$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update-id', 'incomes', '$mydate' ,'$mystring')";
 				$result2=mysqli_query($con,$sql2);
 			}
 			else

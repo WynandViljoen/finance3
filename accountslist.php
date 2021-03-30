@@ -160,7 +160,7 @@ th{
 		    echo "Record: '$accounttype', '$description' inserted successfully into accounttypes table.";
 		    $mydate = date("Y-m-d H:i:s");
 			$mystring = $_POST['accounttype'] . ", ". $_POST['description'];
-			$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('add', 'accounttypes', '$mydate' ,'$mystring')";
+			$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('add', 'accounttypes', '$mydate' ,'$mystring')";
 			$result2=mysqli_query($con,$sql2);	
 		}
 		else
@@ -186,7 +186,7 @@ th{
 		    echo "Record: '$account', '$accounttype', $amount, '$mydate', '$description' inserted successfully into accounts table.";
 		    $mydate = date("Y-m-d H:i:s");
 			$mystring = $_POST['Account'] . ", ". $_POST['accounttype'] . ", ". $_POST['balance'] . ", ". $_POST['startdate'] . ", ". $_POST['description'];
-			$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('add', 'accounts', '$mydate' ,'$mystring')";
+			$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('add', 'accounts', '$mydate' ,'$mystring')";
 			$result2=mysqli_query($con,$sql2);	
 		}
 		else
@@ -210,7 +210,7 @@ th{
 
 		   	$mydate = date("Y-m-d H:i:s");
 			$mystring = $_POST['accounttypeold'] . ", ". $_POST['descriptionold'];
-			$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('remove', 'accounttypes', '$mydate' ,'$mystring')";
+			$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('remove', 'accounttypes', '$mydate' ,'$mystring')";
 			$result2=mysqli_query($con,$sql2);				    	
 		}
 		else
@@ -236,7 +236,7 @@ th{
 
 				$mydate = date("Y-m-d H:i:s");
 				$mystring = "[" . $_POST['accounttypeold'] . "]" . ": ". $_POST['descriptionold'] . " ---> ". $_POST['descriptionnew'];
-				$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'accounttypes', '$mydate' ,'$mystring')";
+				$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'accounttypes', '$mydate' ,'$mystring')";
 				$result2=mysqli_query($con,$sql2);	
 			}	
 			else
@@ -252,7 +252,7 @@ th{
 
 				$mydate = date("Y-m-d H:i:s");
 				$mystring = $_POST['accounttypeold'] . " ---> " . $_POST['accounttypenew'];
-				$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update-id', 'accounttypes', '$mydate' ,'$mystring')";
+				$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update-id', 'accounttypes', '$mydate' ,'$mystring')";
 				$result2=mysqli_query($con,$sql2);	
 			}
 			else
@@ -278,7 +278,7 @@ th{
 
 		   	$mydate = date("Y-m-d H:i:s");
 			$mystring = $_POST['accountold'] . ", ". $_POST['accounttypeold'] . ", ". $_POST['balanceold'] . ", ". $_POST['mydateold'] . ", ". $_POST['descriptionold'];
-			$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('remove', 'accounts', '$mydate' ,'$mystring')";
+			$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('remove', 'accounts', '$mydate' ,'$mystring')";
 			$result2=mysqli_query($con,$sql2);	
 		}
 		else
@@ -310,7 +310,7 @@ th{
 
 				$mydate = date("Y-m-d H:i:s");
 				$mystring = "[" . $_POST['accountold'] . "]: ". $_POST['accounttypeold'] . " ---> ". $_POST['accounttypenew'];
-				$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'accounts', '$mydate' ,'$mystring')";
+				$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'accounts', '$mydate' ,'$mystring')";
 				$result2=mysqli_query($con,$sql2);	
 			}
 			else
@@ -326,7 +326,7 @@ th{
 
 				$mydate = date("Y-m-d H:i:s");
 				$mystring = "[" . $_POST['accountold'] . "]: ". $_POST['balanceold'] . " ---> ". $_POST['balancenew'];
-				$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'accounts', '$mydate' ,'$mystring')";
+				$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'accounts', '$mydate' ,'$mystring')";
 				$result2=mysqli_query($con,$sql2);	
 			}
 			else
@@ -342,7 +342,7 @@ th{
 
 				$mydate = date("Y-m-d H:i:s");
 				$mystring = "[" . $_POST['accountold'] . "]: ". $_POST['mydateold'] . " ---> ". $_POST['mydatenew'];
-				$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'accounts', '$mydate' ,'$mystring')";
+				$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'accounts', '$mydate' ,'$mystring')";
 				$result2=mysqli_query($con,$sql2);	
 			}
 			else
@@ -358,7 +358,7 @@ th{
 
 				$mydate = date("Y-m-d H:i:s");
 				$mystring = "[" . $_POST['accountold'] . "]: ". $_POST['descriptionold'] . " ---> ". $_POST['descriptionnew'];
-				$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'accounts', '$mydate' ,'$mystring')";
+				$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update', 'accounts', '$mydate' ,'$mystring')";
 				$result2=mysqli_query($con,$sql2);	
 			}
 			else
@@ -374,7 +374,7 @@ th{
 
 				$mydate = date("Y-m-d H:i:s");
 				$mystring = $_POST['accountold'] . " ---> " . $_POST['accountnew'];
-				$sql2 = "INSERT INTO `logs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update-id', 'accounts', '$mydate' ,'$mystring')";
+				$sql2 = "INSERT INTO `mylogs` (`actionTaken`, `dbTable`, `timeStamp`, `fullEntry`) VALUES ('update-id', 'accounts', '$mydate' ,'$mystring')";
 				$result2=mysqli_query($con,$sql2);	
 			}
 			else

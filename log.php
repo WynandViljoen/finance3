@@ -51,7 +51,7 @@ th{
 
 	$mydate = date("Y-m"); 
 
-	$sql = "SELECT * FROM `logs` ORDER BY `id` DESC";
+	$sql = "SELECT * FROM `mylogs` ORDER BY `id` DESC";
 	echo "<table align=center id=\"table2\" class=\"mytable\" border=1><th>Action Taken</th><th>Table Name</th><th>Date</th><th>Info</th>";
 	if ($result=mysqli_query($con,$sql))
 	while ($row=mysqli_fetch_row($result))
