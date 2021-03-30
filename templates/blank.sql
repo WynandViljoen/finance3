@@ -284,29 +284,61 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
--- Table structure for table `logs`
+-- Table structure for table `mylogs`
 --
 
-DROP TABLE IF EXISTS `logs`;
+DROP TABLE IF EXISTS `mylogs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `logs` (
+CREATE TABLE `mylogs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `actionTaken` varchar(100) NOT NULL,
   `dbTable` varchar(100) NOT NULL,
   `timeStamp` datetime NOT NULL,
   `fullEntry` varchar(500) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1357 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `logs`
+-- Dumping data for table `mylogs`
 --
 
-LOCK TABLES `logs` WRITE;
-/*!40000 ALTER TABLE `logs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `logs` ENABLE KEYS */;
+LOCK TABLES `mylogs` WRITE;
+/*!40000 ALTER TABLE `mylogs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mylogs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `preauthorised`
+--
+
+DROP TABLE IF EXISTS `preauthorised`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `preauthorised` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Description` varchar(100) NOT NULL,
+  `Account` varchar(50) NOT NULL,
+  `StartDate` date NOT NULL,
+  `EndDate` date NOT NULL,
+  `MinAmount` float NOT NULL,
+  `MaxAmount` float NOT NULL,
+  `Category` varchar(50) NOT NULL,
+  `verified` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `Account` (`Account`),
+  CONSTRAINT `preauthorised_ibfk_1` FOREIGN KEY (`Account`) REFERENCES `accounts` (`Account`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `preauthorised`
+--
+
+LOCK TABLES `preauthorised` WRITE;
+/*!40000 ALTER TABLE `preauthorised` DISABLE KEYS */;
+/*!40000 ALTER TABLE `preauthorised` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -548,4 +580,4 @@ USE `finance`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-09 17:35:23
+-- Dump completed on 2021-03-29 17:35:23
